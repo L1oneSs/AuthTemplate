@@ -1,25 +1,40 @@
-# AuthTemplate
-
-<div align="center">
-  <div>
-    <button onclick="showLanguage('ru')">Русский</button>
-    <button onclick="showLanguage('en')">English</button>
-    <button onclick="showLanguage('zh')">中文</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuthTemplate</title>
+  <style>
+    .language-section {
+      display: none;
+    }
+    .language-section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div align="center">
+    <div>
+      <button onclick="showLanguage('ru')">Русский</button>
+      <button onclick="showLanguage('en')">English</button>
+      <button onclick="showLanguage('zh')">中文</button>
+    </div>
   </div>
-</div>
 
-<script>
-  function showLanguage(lang) {
-    document.querySelectorAll('.language-section').forEach(section => {
-      section.style.display = section.id === lang ? 'block' : 'none';
-    });
-  }
-  document.addEventListener('DOMContentLoaded', () => showLanguage('en'));
-</script>
+  <script>
+    function showLanguage(lang) {
+      document.querySelectorAll('.language-section').forEach(section => {
+        section.classList.remove('active');
+        if (section.id === lang) {
+          section.classList.add('active');
+        }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => showLanguage('en'));
+  </script>
 
----
-
-<div id="ru" class="language-section" style="display: none;">
+  <div id="ru" class="language-section">
 ## 🇷🇺 Русский
 
 ### 📋 Введение
@@ -216,9 +231,10 @@ AuthTemplate/
 - `is_bot` - Признак бота
 - `expires_at` - Дата истечения
 - `is_active` - Статус активности
-</div>
+  </div>
 
-<div id="en" class="language-section" style="display: block;">
+  <div id="en" class="language-section active">
+
 ## 🇬🇧 English
 
 ### 📋 Introduction
@@ -415,9 +431,10 @@ AuthTemplate/
 - `is_bot` - Bot flag
 - `expires_at` - Expiration date
 - `is_active` - Activity status
-</div>
+  </div>
 
-<div id="zh" class="language-section" style="display: none;">
+  <div id="zh" class="language-section">
+
 ## 🇨🇳 中文
 
 ### 📋 介绍
@@ -614,4 +631,6 @@ AuthTemplate/
 - `is_bot` - 机器人标志
 - `expires_at` - 到期日期
 - `is_active` - 活动状态
-</div>
+  </div>
+</body>
+</html>
