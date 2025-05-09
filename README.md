@@ -8,10 +8,19 @@
   </p>
 </div>
 
----
+  <script>
+    function showLanguage(lang) {
+      document.querySelectorAll('.language-section').forEach(section => {
+        section.classList.remove('active');
+        if (section.id === lang) {
+          section.classList.add('active');
+        }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => showLanguage('en'));
+  </script>
 
-<a id="ru"></a>
-
+  <div id="ru" class="language-section">
 ## 🇷🇺 Русский
 
 ### 📋 Введение
@@ -208,10 +217,9 @@ AuthTemplate/
 - `is_bot` - Признак бота
 - `expires_at` - Дата истечения
 - `is_active` - Статус активности
+  </div>
 
----
-
-<a id="en"></a>
+  <div id="en" class="language-section active">
 
 ## 🇬🇧 English
 
@@ -409,10 +417,9 @@ AuthTemplate/
 - `is_bot` - Bot flag
 - `expires_at` - Expiration date
 - `is_active` - Activity status
+  </div>
 
----
-
-<a id="zh"></a>
+  <div id="zh" class="language-section">
 
 ## 🇨🇳 中文
 
@@ -610,3 +617,6 @@ AuthTemplate/
 - `is_bot` - 机器人标志
 - `expires_at` - 到期日期
 - `is_active` - 活动状态
+  </div>
+</body>
+</html>
