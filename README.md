@@ -1,17 +1,25 @@
 # AuthTemplate
 
 <div align="center">
-  <p>
-    <a href="#ru">Русский</a> |
-    <a href="#en">English</a> |
-    <a href="#zh">中文</a>
-  </p>
+  <div>
+    <button onclick="showLanguage('ru')">Русский</button>
+    <button onclick="showLanguage('en')">English</button>
+    <button onclick="showLanguage('zh')">中文</button>
+  </div>
 </div>
+
+<script>
+  function showLanguage(lang) {
+    document.querySelectorAll('.language-section').forEach(section => {
+      section.style.display = section.id === lang ? 'block' : 'none';
+    });
+  }
+  document.addEventListener('DOMContentLoaded', () => showLanguage('en'));
+</script>
 
 ---
 
-<a id="ru"></a>
-
+<div id="ru" class="language-section" style="display: none;">
 ## 🇷🇺 Русский
 
 ### 📋 Введение
@@ -208,11 +216,9 @@ AuthTemplate/
 - `is_bot` - Признак бота
 - `expires_at` - Дата истечения
 - `is_active` - Статус активности
+</div>
 
----
-
-<a id="en"></a>
-
+<div id="en" class="language-section" style="display: block;">
 ## 🇬🇧 English
 
 ### 📋 Introduction
@@ -409,11 +415,9 @@ AuthTemplate/
 - `is_bot` - Bot flag
 - `expires_at` - Expiration date
 - `is_active` - Activity status
+</div>
 
----
-
-<a id="zh"></a>
-
+<div id="zh" class="language-section" style="display: none;">
 ## 🇨🇳 中文
 
 ### 📋 介绍
@@ -610,3 +614,4 @@ AuthTemplate/
 - `is_bot` - 机器人标志
 - `expires_at` - 到期日期
 - `is_active` - 活动状态
+</div>
