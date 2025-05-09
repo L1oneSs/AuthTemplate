@@ -1,4 +1,4 @@
-# AuthTemplate Application
+# AuthTemplate
 
 <div align="center">
   <p>
@@ -8,19 +8,10 @@
   </p>
 </div>
 
-  <script>
-    function showLanguage(lang) {
-      document.querySelectorAll('.language-section').forEach(section => {
-        section.classList.remove('active');
-        if (section.id === lang) {
-          section.classList.add('active');
-        }
-      });
-    }
-    document.addEventListener('DOMContentLoaded', () => showLanguage('en'));
-  </script>
+---
 
-  <div id="ru" class="language-section">
+<a id="ru"></a>
+
 ## 🇷🇺 Русский
 
 ### 📋 Введение
@@ -217,9 +208,10 @@ AuthTemplate/
 - `is_bot` - Признак бота
 - `expires_at` - Дата истечения
 - `is_active` - Статус активности
-  </div>
 
-  <div id="en" class="language-section active">
+---
+
+<a id="en"></a>
 
 ## 🇬🇧 English
 
@@ -417,9 +409,10 @@ AuthTemplate/
 - `is_bot` - Bot flag
 - `expires_at` - Expiration date
 - `is_active` - Activity status
-  </div>
 
-  <div id="zh" class="language-section">
+---
+
+<a id="zh"></a>
 
 ## 🇨🇳 中文
 
@@ -617,6 +610,3 @@ AuthTemplate/
 - `is_bot` - 机器人标志
 - `expires_at` - 到期日期
 - `is_active` - 活动状态
-  </div>
-</body>
-</html>
