@@ -1,4 +1,4 @@
-# AuthTemplate
+# AuthTemplate Application
 
 <div align="center">
   <p>
