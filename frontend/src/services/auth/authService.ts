@@ -28,7 +28,6 @@ class AuthService {
 	}
 
 	async register(data: z.infer<typeof RegisterSchema>) {
-		// Extract fields needed for backend
 		const { email, username, password } = data;
 
 		const response = await axiosClassic.post(`${this.BASE_URL}/register`, {

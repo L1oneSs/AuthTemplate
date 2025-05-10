@@ -14,8 +14,6 @@
 
 ## 🇷🇺 Русский
 
-### 📋 Введение
-
 **AuthTemplate** — это полноценный шаблон, содержащий функционал авторизации для полноценного веб-приложения. Включает в себя:
 
 - **Backend**: Реализован на Flask (Python) с поддержкой ORM, миграций и JWT-авторизации
@@ -82,6 +80,8 @@ pip install -r requirements.txt
 ```
 
 4. Создайте файл `.env` по примеру `.env.example`.
+
+> **Примечание**: Если вам не нужен функционал сброса пароля, то можете его спокойно вырезать или поменять на свой. В текущей версии для сброса пароля используются сервисы mail.ru.
 
 **Переменные окружения backend:**
 
@@ -284,6 +284,8 @@ pip install -r requirements.txt
 
 4. Create a `.env` file based on `.env.example`.
 
+> **Note**: If you do not need the password reset functionality, you can safely remove it or replace it with your own. The current version uses mail.ru services for password reset.
+
 **Backend environment variables:**
 
 | Variable                    | Description                                           |
@@ -484,6 +486,8 @@ pip install -r requirements.txt
 ```
 
 4. 根据`.env.example`创建`.env`文件。
+
+> **注意**：如果您不需要密码重置功能，可以安全地删除它或用您自己的功能替换它。当前版本使用mail.ru服务进行密码重置。
 
 **后端环境变量：**
 
