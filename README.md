@@ -71,6 +71,8 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
+> **Примечание**: Способы активации виртуального окружения могут отличаться в зависимости от вашей операционной системы и используемой оболочки. Подробнее о методах активации виртуального окружения смотрите в соответствующей документации в интернете.
+
 3. Установите зависимости:
 
 ```bash
@@ -273,6 +275,8 @@ venv\Scripts\activate
 # Activation for macOS/Linux
 source venv/bin/activate
 ```
+
+> **Note**: The methods for activating the virtual environment may vary depending on your operating system and the shell you are using. For more information about activating the virtual environment, please refer to the relevant documentation online.
 
 3. Install dependencies:
 
@@ -477,6 +481,8 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
+> **注意**：如果您不需要密码重置功能，可以安全地删除它或用您自己的功能替换它。当前版本使用mail.ru服务进行密码重置。
+
 3. 安装依赖：
 
 ```bash
@@ -484,8 +490,6 @@ pip install -r requirements.txt
 ```
 
 4. 根据`.env.example`创建`.env`文件。
-
-> **注意**：如果您不需要密码重置功能，可以安全地删除它或用您自己的功能替换它。当前版本使用mail.ru服务进行密码重置。
 
 **后端环境变量：**
 
