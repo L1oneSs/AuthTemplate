@@ -132,21 +132,28 @@ AuthTemplate/
 │   ├── app/                  # Основной модуль приложения
 │   │   ├── api/              # API маршруты и ресурсы
 │   │   ├── models/           # Модели данных
-│   │   ├── services/         # Бизнес-логика приложения
+│   │   ├── schemas/          # Схемы данных и валидации
+│   │   ├── utils/            # Вспомогательные утилиты
 │   │   ├── extensions.py     # Расширения Flask
 │   │   └── config.py         # Конфигурация приложения
-│   ├── migrations/           # Миграции базы данных
 │   ├── .env.example          # Пример файла окружения
+│   ├── run_dev.py            # Скрипт запуска в режиме разработки
+│   ├── run_prod_unix.py      # Скрипт запуска в режиме продакшн для UNIX-систем
+│   ├── run_prod_windows.py   # Скрипт запуска в режиме продакшн для Windows
 │   └── requirements.txt      # Зависимости Python
 │
 ├── frontend/                 # Next.js приложение
 │   ├── public/               # Статические файлы
 │   ├── src/                  # Исходный код
+│   │   ├── app/              # Структура приложения Next.js
 │   │   ├── components/       # React компоненты
-│   │   ├── pages/            # Страницы приложения
 │   │   ├── hooks/            # React хуки
-│   │   ├── services/         # Сервисы для работы с API
-│   │   └── store/            # Управление состоянием
+│   │   ├── interfaces/       # TypeScript интерфейсы
+│   │   ├── lib/              # Библиотеки и утилиты
+│   │   ├── middleware/       # Промежуточное ПО
+│   │   ├── providers/        # Провайдеры контекста
+│   │   ├── schemas/          # Схемы валидации
+│   │   └── services/         # Сервисы для работы с API
 │   ├── .env.example          # Пример файла окружения
 │   └── package.json          # Зависимости и скрипты NPM
 │
@@ -337,21 +344,28 @@ AuthTemplate/
 │   ├── app/                  # Main application module
 │   │   ├── api/              # API routes and resources
 │   │   ├── models/           # Data models
-│   │   ├── services/         # Application business logic
+│   │   ├── schemas/          # Data schemas and validation
+│   │   ├── utils/            # Helper utilities
 │   │   ├── extensions.py     # Flask extensions
 │   │   └── config.py         # Application configuration
-│   ├── migrations/           # Database migrations
 │   ├── .env.example          # Environment file example
+│   ├── run_dev.py            # Development mode launch script
+│   ├── run_prod_unix.py      # Production mode launch script for UNIX systems
+│   ├── run_prod_windows.py   # Production mode launch script for Windows
 │   └── requirements.txt      # Python dependencies
 │
 ├── frontend/                 # Next.js application
 │   ├── public/               # Static files
 │   ├── src/                  # Source code
+│   │   ├── app/              # Next.js application structure
 │   │   ├── components/       # React components
-│   │   ├── pages/            # Application pages
 │   │   ├── hooks/            # React hooks
-│   │   ├── services/         # Services for API interaction
-│   │   └── store/            # State management
+│   │   ├── interfaces/       # TypeScript interfaces
+│   │   ├── lib/              # Libraries and utilities
+│   │   ├── middleware/       # Middleware
+│   │   ├── providers/        # Context providers
+│   │   ├── schemas/          # Validation schemas
+│   │   └── services/         # Services for API interaction
 │   ├── .env.example          # Environment file example
 │   └── package.json          # NPM dependencies and scripts
 │
@@ -540,21 +554,28 @@ AuthTemplate/
 │   ├── app/                  # 主应用程序模块
 │   │   ├── api/              # API路由和资源
 │   │   ├── models/           # 数据模型
-│   │   ├── services/         # 应用程序业务逻辑
+│   │   ├── schemas/          # 数据模式和验证
+│   │   ├── utils/            # 辅助工具
 │   │   ├── extensions.py     # Flask扩展
 │   │   └── config.py         # 应用程序配置
-│   ├── migrations/           # 数据库迁移
 │   ├── .env.example          # 环境文件示例
+│   ├── run_dev.py            # 开发模式启动脚本
+│   ├── run_prod_unix.py      # UNIX系统的生产模式启动脚本
+│   ├── run_prod_windows.py   # Windows的生产模式启动脚本
 │   └── requirements.txt      # Python依赖
 │
 ├── frontend/                 # Next.js应用程序
 │   ├── public/               # 静态文件
 │   ├── src/                  # 源代码
+│   │   ├── app/              # Next.js应用程序结构
 │   │   ├── components/       # React组件
-│   │   ├── pages/            # 应用程序页面
 │   │   ├── hooks/            # React钩子
-│   │   ├── services/         # API交互服务
-│   │   └── store/            # 状态管理
+│   │   ├── interfaces/       # TypeScript接口
+│   │   ├── lib/              # 库和工具
+│   │   ├── middleware/       # 中间件
+│   │   ├── providers/        # 上下文提供者
+│   │   ├── schemas/          # 验证模式
+│   │   └── services/         # API交互服务
 │   ├── .env.example          # 环境文件示例
 │   └── package.json          # NPM依赖和脚本
 │
