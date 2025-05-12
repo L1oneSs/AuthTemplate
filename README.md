@@ -87,7 +87,6 @@ pip install -r requirements.txt
 
 | Переменная                  | Описание                                                    |
 | --------------------------- | ----------------------------------------------------------- |
-| `FLASK_APP`                 | Точка входа в приложение Flask                              |
 | `FLASK_ENV`                 | Режим работы (development/production)                       |
 | `FLASK_DEBUG`               | Включение/отключение режима отладки (1/0)                   |
 | `DATABASE_URL`              | URL для подключения к базе данных                           |
@@ -124,6 +123,90 @@ python run_prod_windows.py
 
 > **Документация API** доступна по адресу [http://127.0.0.1:7020/api/docs](http://127.0.0.1:7020/api/docs) после запуска сервера.
 
+### 🛠️ Управление ролями пользователей
+
+AuthTemplate предоставляет два способа управления ролями пользователей: через CLI команды Flask и через готовые скрипты Python.
+
+#### Через CLI команды Flask
+
+1. Активируйте виртуальное окружение:
+
+```bash
+# Windows
+venv\Scripts\activate
+
+# macOS/Linux
+source venv/bin/activate
+```
+
+2. Установите переменные окружения:
+
+```bash
+# Windows CMD
+set FLASK_APP=app
+
+# Windows PowerShell
+$env:FLASK_APP="app"
+
+# macOS/Linux
+export FLASK_APP=app
+```
+
+3. Инициализация базовых ролей (user, admin):
+
+```bash
+flask init-roles
+```
+
+4. Назначение роли администратора существующему пользователю:
+
+```bash
+flask make-admin --email=admin@example.com --username=adminuser
+```
+
+> **Примечание**: Пользователь с указанными email и username должен существовать в базе данных.
+
+#### Через готовые скрипты Python
+
+В директории `backend/scripts` находятся готовые скрипты для управления ролями:
+
+1. Создание базовых ролей в системе:
+
+```bash
+# Перейдите в корневую директорию backend
+cd backend
+
+# Запустите скрипт с активированным виртуальным окружением
+python scripts/create_roles.py
+```
+
+2. Назначение роли администратора пользователю:
+
+```bash
+# Замените email и username на данные существующего пользователя
+python scripts/create_admin.py admin@example.com adminuser
+```
+
+> **Совет**: Для удобства вы можете создать BAT-файлы для быстрого запуска скриптов в Windows:
+> 
+> **create_roles.bat**:
+> ```batch
+> @echo off
+> call venv\Scripts\activate
+> python scripts\create_roles.py
+> pause
+> ```
+> 
+> **create_admin.bat**:
+> ```batch
+> @echo off
+> call venv\Scripts\activate
+> python scripts\create_admin.py %1 %2
+> pause
+> ```
+> 
+> И затем запускать: `create_admin.bat admin@example.com adminuser`
+
 ### 📂 Структура проекта
 
 ```
@@ -136,6 +219,9 @@ AuthTemplate/
 │   │   ├── utils/            # Вспомогательные утилиты
 │   │   ├── extensions.py     # Расширения Flask
 │   │   └── config.py         # Конфигурация приложения
+│   ├── scripts/              # Скрипты для администрирования
+│   │   ├── create_roles.py   # Скрипт создания ролей
+│   │   └── create_admin.py   # Скрипт назначения администратора
 │   ├── .env.example          # Пример файла окружения
 │   ├── run_dev.py            # Скрипт запуска в режиме разработки
 │   ├── run_prod_unix.py      # Скрипт запуска в режиме продакшн для UNIX-систем
@@ -299,7 +385,6 @@ pip install -r requirements.txt
 
 | Variable                    | Description                                           |
 | --------------------------- | ----------------------------------------------------- |
-| `FLASK_APP`                 | Flask application entry point                         |
 | `FLASK_ENV`                 | Operating mode (development/production)               |
 | `FLASK_DEBUG`               | Enable/disable debug mode (1/0)                       |
 | `DATABASE_URL`              | Database connection URL                               |
@@ -336,6 +421,90 @@ python run_prod_windows.py
 
 > **API Documentation** is available at [http://127.0.0.1:7020/api/docs](http://127.0.0.1:7020/api/docs) after starting the server.
 
+### 🛠️ User Role Management
+
+AuthTemplate provides two ways to manage user roles: through Flask CLI commands and through Python scripts.
+
+#### Using Flask CLI Commands
+
+1. Activate your virtual environment:
+
+```bash
+# Windows
+venv\Scripts\activate
+
+# macOS/Linux
+source venv/bin/activate
+```
+
+2. Set environment variables:
+
+```bash
+# Windows CMD
+set FLASK_APP=app
+
+# Windows PowerShell
+$env:FLASK_APP="app"
+
+# macOS/Linux
+export FLASK_APP=app
+```
+
+3. Initialize basic roles (user, admin):
+
+```bash
+flask init-roles
+```
+
+4. Assign admin role to an existing user:
+
+```bash
+flask make-admin --email=admin@example.com --username=adminuser
+```
+
+> **Note**: A user with the provided email and username must exist in the database.
+
+#### Using Python Scripts
+
+In the `backend/scripts` directory, there are ready-to-use scripts for role management:
+
+1. Create basic roles in the system:
+
+```bash
+# Navigate to backend root directory
+cd backend
+
+# Run the script with activated virtual environment
+python scripts/create_roles.py
+```
+
+2. Assign admin role to a user:
+
+```bash
+# Replace email and username with an existing user's data
+python scripts/create_admin.py admin@example.com adminuser
+```
+
+> **Tip**: For convenience, you can create BAT files for quick script execution on Windows:
+> 
+> **create_roles.bat**:
+> ```batch
+> @echo off
+> call venv\Scripts\activate
+> python scripts\create_roles.py
+> pause
+> ```
+> 
+> **create_admin.bat**:
+> ```batch
+> @echo off
+> call venv\Scripts\activate
+> python scripts\create_admin.py %1 %2
+> pause
+> ```
+> 
+> And then run: `create_admin.bat admin@example.com adminuser`
+
 ### 📂 Project Structure
 
 ```
@@ -348,6 +517,9 @@ AuthTemplate/
 │   │   ├── utils/            # Helper utilities
 │   │   ├── extensions.py     # Flask extensions
 │   │   └── config.py         # Application configuration
+│   ├── scripts/              # Administration scripts
+│   │   ├── create_roles.py   # Script for creating roles
+│   │   └── create_admin.py   # Script for assigning admin role
 │   ├── .env.example          # Environment file example
 │   ├── run_dev.py            # Development mode launch script
 │   ├── run_prod_unix.py      # Production mode launch script for UNIX systems
@@ -509,7 +681,6 @@ pip install -r requirements.txt
 
 | 变量                        | 描述                                             |
 | --------------------------- | ------------------------------------------------ |
-| `FLASK_APP`                 | Flask应用程序入口点                              |
 | `FLASK_ENV`                 | 运行模式 (development/production)                |
 | `FLASK_DEBUG`               | 启用/禁用调试模式 (1/0)                          |
 | `DATABASE_URL`              | 数据库连接URL                                    |
@@ -546,6 +717,90 @@ python run_prod_windows.py
 
 > **API文档**在服务器启动后可通过 [http://127.0.0.1:7020/api/docs](http://127.0.0.1:7020/api/docs) 访问。
 
+### 🛠️ 用户角色管理
+
+AuthTemplate提供两种管理用户角色的方式：通过Flask CLI命令和通过Python脚本。
+
+#### 使用Flask CLI命令
+
+1. 激活您的虚拟环境：
+
+```bash
+# Windows
+venv\Scripts\activate
+
+# macOS/Linux
+source venv/bin/activate
+```
+
+2. 设置环境变量：
+
+```bash
+# Windows CMD
+set FLASK_APP=app
+
+# Windows PowerShell
+$env:FLASK_APP="app"
+
+# macOS/Linux
+export FLASK_APP=app
+```
+
+3. 初始化基本角色（user, admin）：
+
+```bash
+flask init-roles
+```
+
+4. 为现有用户分配管理员角色：
+
+```bash
+flask make-admin --email=admin@example.com --username=adminuser
+```
+
+> **注意**：数据库中必须存在具有提供的email和username的用户。
+
+#### 使用Python脚本
+
+在`backend/scripts`目录中，有用于角色管理的现成脚本：
+
+1. 在系统中创建基本角色：
+
+```bash
+# 导航到backend根目录
+cd backend
+
+# 使用激活的虚拟环境运行脚本
+python scripts/create_roles.py
+```
+
+2. 为用户分配管理员角色：
+
+```bash
+# 将email和username替换为现有用户的数据
+python scripts/create_admin.py admin@example.com adminuser
+```
+
+> **提示**：为了方便，您可以在Windows上创建BAT文件以快速执行脚本：
+> 
+> **create_roles.bat**:
+> ```batch
+> @echo off
+> call venv\Scripts\activate
+> python scripts\create_roles.py
+> pause
+> ```
+> 
+> **create_admin.bat**:
+> ```batch
+> @echo off
+> call venv\Scripts\activate
+> python scripts\create_admin.py %1 %2
+> pause
+> ```
+> 
+> 然后运行: `create_admin.bat admin@example.com adminuser`
+
 ### 📂 项目结构
 
 ```
@@ -558,6 +813,9 @@ AuthTemplate/
 │   │   ├── utils/            # 辅助工具
 │   │   ├── extensions.py     # Flask扩展
 │   │   └── config.py         # 应用程序配置
+│   ├── scripts/              # 管理脚本
+│   │   ├── create_roles.py   # 创建角色的脚本
+│   │   └── create_admin.py   # 分配管理员角色的脚本
 │   ├── .env.example          # 环境文件示例
 │   ├── run_dev.py            # 开发模式启动脚本
 │   ├── run_prod_unix.py      # UNIX系统的生产模式启动脚本
@@ -599,7 +857,7 @@ AuthTemplate/
 - `updated_at` - 更新日期
 - `deleted` - 删除标志（软删除）
 
-#### Role
+#### Role (角色)
 
 - `id` - 唯一标识符
 - `name` - 角色名称

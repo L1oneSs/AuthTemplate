@@ -8,6 +8,7 @@ from marshmallow import ValidationError
 from app.extensions import init_extensions
 from app.schemas.base import ErrorSchema
 from config import config
+from app.commands import register_commands
 
 # Создаем директорию для логов, если она не существует
 os.makedirs('logs', exist_ok=True)
@@ -71,12 +72,18 @@ class YourApp:
         
         # Регистрация маршрутов API
         self._register_api_routes()
+
+        # Регистрация команд Flask CLI
+        register_commands(self.app)
         
         # Создание всех таблиц после инициализации всех компонентов и импорта моделей
         with self.app.app_context():
             from app.extensions import db
+            # from app.helpers.create_default_roles import create_default_roles
             
             db.create_all()
+            # Автоматически создаем роли (отключите, если не нужно)
+            # create_default_roles()
             logger.info("База данных успешно инициализирована")
         
         # Устанавливаем флаг инициализации

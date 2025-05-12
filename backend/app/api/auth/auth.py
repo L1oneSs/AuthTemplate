@@ -10,7 +10,7 @@ from flask_jwt_extended import (
     create_access_token, create_refresh_token
 )
 from marshmallow import ValidationError
-from app.models.auth import User, UserSession
+from app.models.auth import User, UserSession, Role  # Добавляем импорт Role
 from app.schemas.auth import (
     LoginSchema, UserCreateSchema
 )
@@ -46,6 +46,7 @@ class Register(Resource):
     @api.response(201, 'Успешная регистрация')
     @api.response(400, 'Ошибка валидации')
     @api.response(409, 'Пользователь с таким email уже существует')
+    @api.response(409, 'Данное имя пользователя уже занято')
     def post(self):
         """Регистрация нового пользователя"""
         try:
@@ -56,10 +57,14 @@ class Register(Resource):
                 return {'message': 'Ошибка валидации', 'errors': ve.messages}, 400
             
             # Проверяем, существует ли пользователь с таким email
-            existing_user = User.query.filter_by(email=register_data['email']).first()
-            if existing_user:
+            existing_email = User.query.filter_by(email=register_data['email']).first()
+            if existing_email:
                 return {'message': 'Пользователь с таким email уже существует'}, 409
                 
+            existing_username = User.query.filter_by(username=register_data['username']).first()
+            if existing_username:
+                return {'message': 'Данное имя пользователя уже занято'}, 409
+            
             # Создаем нового пользователя
             user = User(
                 email=register_data['email'],
@@ -72,6 +77,15 @@ class Register(Resource):
             user.set_password(register_data['password'])
             print(f"Registering user: {register_data}, with username: {user.username}")
             db.session.add(user)
+
+            # Создание роли user по умолчанию (если нужно)
+            # user_role = Role.query.filter_by(name='user').first()
+            # if not user_role:
+            #     user_role = Role(name='user', description='Обычный пользователь системы')
+            #     db.session.add(user_role)
+            
+            # user.roles.append(user_role)            
+
             db.session.commit()
             
             # Создание токенов
